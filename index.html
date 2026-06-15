@@ -87,7 +87,7 @@
                 <span class="eyebrow">Entreprise</span>
                 <h2>HIFI FILTER : filtration et s&eacute;paration</h2>
               </div>
-              <img src="assets/image/HIFI%20FILTER.jpg" alt="Logo HIFI FILTER" />
+              <img src="assets/image/HIFI FILTER.jpg" alt="Logo HIFI FILTER" />
             </div>
             <p>
               HIFI FILTER est une entreprise sp&eacute;cialis&eacute;e dans les solutions de filtration et de
@@ -426,13 +426,13 @@
             <header class="trace-head">
               <div>
 	                <span class="trace-number">Trace 4</span>
-	                <h2>Automatiser le contrôle des unmanaged layers</h2>
-	                <div class="skill-list">
-	                  <span class="skill red">Interroger Dataverse</span>
-	                  <span class="skill blue">Filtrer et regrouper</span>
-	                  <span class="skill green">Produire un rapport Teams</span>
-	                  <span class="skill gold">Rendre l'alerte exploitable</span>
-	                </div>
+		                <h2>Automatiser le contrôle des unmanaged layers</h2>
+		                <div class="skill-list">
+		                  <span class="skill gold">Choisir l'environnement</span>
+		                  <span class="skill red">Interroger Dataverse</span>
+		                  <span class="skill blue">Filtrer et regrouper</span>
+		                  <span class="skill green">Publier une alerte exploitable</span>
+		                </div>
               </div>
             </header>
             <div class="trace-body">
@@ -442,46 +442,57 @@
 	                    <img src="assets/traces/Trace4-UnmanagedFlow.png" alt="Structure globale du flow Power Automate unmanaged layers" />
 	                  </button>
 	                </div>
-	                <figcaption>
-	                  Trace n°4A : structure du flow Power Automate de contrôle des layers non managées. Le flow
-	                  interroge Dataverse, filtre les composants, regroupe les résultats puis publie un rapport Teams.
-	                </figcaption>
-	              </figure>
-	              <div class="trace-text">
-	                <div class="image-frame">
-	                  <button type="button" data-open-image data-image-title="Trace 4B - Résultat Teams unmanaged layers">
-	                    <img src="assets/traces/Trace4-UnmanagedResult.png" alt="Message Teams listant des layers non managées en production et leur résolution" />
-	                  </button>
-	                </div>
-	                <h3>Descriptif général de la trace</h3>
-	                <p>
-	                  Cette trace montre un flow Power Automate utilisé pour détecter des layers non managées dans
-	                  Dataverse. Le flow est lancé manuellement, cible un environnement, liste les composants de
-	                  solutions HIFI et identifie ceux qui présentent une anomalie.
-	                </p>
-	                <p>
-	                  Le résultat est publié dans Teams sous forme d'alerte. Cela rend le contrôle directement
-	                  exploitable par l'équipe : les éléments détectés peuvent être corrigés, puis suivis dans le fil
-	                  de discussion.
-	                </p>
-	                <h3>Analyse des savoir-faire</h3>
-	                <p>
-	                  Pour <span class="sf-red">interroger Dataverse</span>, j'utilise des actions HTTP ou List Rows
-	                  avec les bons champs : solution, composant, type de composant et parent éventuel.
-	                </p>
-	                <p>
-	                  Pour <span class="sf-blue">filtrer et regrouper</span>, le flow utilise des étapes
-	                  <code>Filter array</code>, <code>Select</code> et <code>Apply to each</code>. Le but est de
-	                  transformer des lignes Dataverse en liste lisible par solution.
-	                </p>
-	                <p>
-	                  Pour <span class="sf-green">produire un rapport Teams</span>, je construis un message directement
-	                  actionnable. La trace n°4B montre une alerte publiée dans Teams avec les composants concernés.
-	                </p>
-	                <p>
-	                  Pour <span class="sf-gold">rendre l'alerte exploitable</span>, le message doit être assez précis
-	                  pour permettre à l'équipe de savoir quoi corriger et de suivre la résolution après déploiement.
-	                </p>
+		                <figcaption>
+		                  Trace n°4A : structure du flow Power Automate de contrôle des layers non managées. Le cadre
+		                  jaune doit montrer le déclenchement et le choix d'environnement, le cadre rouge l'interrogation
+		                  Dataverse, le cadre bleu le filtrage et le regroupement, et le cadre vert la publication Teams.
+		                </figcaption>
+		              </figure>
+		              <div class="trace-text">
+		                <figure class="trace-visual">
+		                  <div class="image-frame">
+		                    <button type="button" data-open-image data-image-title="Trace 4B - Résultat Teams unmanaged layers">
+		                      <img src="assets/traces/Trace4-UnmanagedResult.png" alt="Message Teams listant des layers non managées en production et leur résolution" />
+		                    </button>
+		                  </div>
+			                  <figcaption>
+			                    Trace n°4B : résultat publié dans Teams. Le cadre rouge peut montrer le titre de l'alerte
+			                    en production, le cadre bleu la liste regroupée des composants détectés, et le cadre vert
+			                    la réponse manuelle d'un collègue après correction ou suivi des éléments détectés.
+			                  </figcaption>
+		                </figure>
+		                <h3>Descriptif général de la trace</h3>
+		                <p>
+		                  Cette trace montre un flow Power Automate utilisé pour détecter des layers non managées dans
+		                  Dataverse. Le flow est lancé manuellement, puis il cible l'environnement choisi, par exemple
+		                  <code>PROD</code> ou <code>UAT</code>, avant de rechercher les composants concernés.
+		                </p>
+		                <p>
+			                  Le flow ne corrige pas automatiquement les anomalies : il publie une alerte dans Teams.
+			                  La correction est ensuite faite par l'équipe, puis suivie manuellement dans le fil de
+			                  discussion, comme on le voit avec la réponse du collègue sous le message.
+		                </p>
+		                <h3>Analyse des savoir-faire</h3>
+		                <p>
+		                  Pour <span class="sf-gold">choisir l'environnement</span>, le flow commence par un
+		                  déclenchement manuel et un choix entre <code>PROD</code> et <code>UAT</code>. Cela évite de
+		                  mélanger les résultats de plusieurs environnements.
+		                </p>
+		                <p>
+		                  Pour <span class="sf-red">interroger Dataverse</span>, j'utilise des actions HTTP ou List Rows
+		                  avec les bons champs : solution, composant, type de composant et parent éventuel. C'est cette
+		                  partie qui récupère les unmanaged layers à analyser.
+		                </p>
+		                <p>
+		                  Pour <span class="sf-blue">filtrer et regrouper</span>, le flow utilise des étapes
+		                  <code>Filter array</code>, <code>Select</code> et <code>Apply to each</code>. Le but est de
+		                  transformer des lignes Dataverse en liste lisible, regroupée par solution et par composant.
+		                </p>
+		                <p>
+			                  Pour <span class="sf-green">publier une alerte exploitable</span>, le message Teams doit être
+			                  assez précis pour indiquer les composants concernés. Le rôle du flow est de détecter et
+			                  d'alerter ; la résolution reste une action humaine, documentée ensuite dans la discussion.
+			                </p>
 	              </div>
 	            </div>
 	          </article>
