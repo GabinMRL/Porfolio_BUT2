@@ -504,37 +504,37 @@
                 <h2>Évaluation des savoir-faire techniques</h2>
               </div>
             </header>
-            <div class="bilan-content">
-              <section class="assessment">
-                <h3>Faire &eacute;voluer un moteur d'automatisation</h3>
-                <span class="level">Niveau : bon, encore perfectible</span>
-                <p><strong>Contexte :</strong> les traces 1, 2 et 3 montrent l'ajout de conditions, de fonctions d'expression et d'une API de tests dans DataCuddle.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> les bases viennent des cours d'algorithmique, de tests et de Git ; le stage m'a ajout&eacute; les contraintes d'un moteur existant, relu par l'&eacute;quipe.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je savais &eacute;crire des scripts isol&eacute;s.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je peux modifier un moteur partag&eacute; et justifier mes choix en revue.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Automatiser un contr&ocirc;le Power Platform</h3>
-                <span class="level">Niveau : moyen &agrave; bon</span>
-                <p><strong>Contexte :</strong> la trace 4 montre un flow Power Automate qui contr&ocirc;le les unmanaged layers Dataverse et publie un rapport Teams exploitable.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai surtout appris ce savoir-faire en stage. Le point difficile est de comprendre les objets internes Dataverse et les limites de Power Automate.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je connaissais peu Power Automate.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je sais structurer un flow de contr&ocirc;le complet.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Rendre le code robuste par la revue</h3>
-                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> les commentaires visibles dans les traces 1 et 2, ainsi que les tests de la trace 3, m'ont fait traiter des cas limites, ajouter des tests et corriger des comportements ambigus.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> la logique de test vient des cours, mais la revue professionnelle m'a appris &agrave; expliciter le contrat d'une fonction et ses messages d'erreur.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je validais surtout par ex&eacute;cution manuelle.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je cherche &agrave; prouver le comportement avec tests et revue.</div>
-                </div>
-              </section>
+	            <div class="bilan-content">
+	              <section class="assessment">
+	                <h3>Faire &eacute;voluer un moteur existant</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> les traces 1 et 2 montrent l'&eacute;volution du moteur DataCuddle : ajout de conditions, r&eacute;solution d'expressions, fonctions typ&eacute;es et traitement des cas limites.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> la principale difficult&eacute; a &eacute;t&eacute; de modifier un outil existant sans casser les comportements d&eacute;j&agrave; utilis&eacute;s. J'ai appris &agrave; raisonner en contrat de fonction : types accept&eacute;s, erreurs attendues et r&eacute;sultat exploitable.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je savais &eacute;crire des scripts isol&eacute;s.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je peux faire &eacute;voluer un moteur partag&eacute; en tenant compte des types, des erreurs et des retours de revue.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>Industrialiser des tests</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> la trace 3 montre le passage d'une logique de workflows JSON vers des tests Python avec <code>pytest</code>, une fixture et une fa&ccedil;ade <code>DCManager</code>.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai compris qu'un test doit rester lisible, rejouable et nettoyable. Le bloc <code>finally</code>, les options d'environnement et la fixture permettent d'&eacute;viter de polluer Dataverse apr&egrave;s un &eacute;chec.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je validais surtout par ex&eacute;cution manuelle ou par fichiers de test isol&eacute;s.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un test Python lisible, param&eacute;trable et nettoy&eacute; m&ecirc;me en cas d'erreur.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>Automatiser un contr&ocirc;le Power Platform</h3>
+	                <span class="level">Niveau : moyen &agrave; bon</span>
+	                <p><strong>Contexte :</strong> la trace 4 montre un flow Power Automate qui d&eacute;tecte des unmanaged layers Dataverse, regroupe les composants concern&eacute;s et publie une alerte Teams.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; manipuler les objets Dataverse et &agrave; produire une sortie utile pour l'&eacute;quipe. La correction n'est pas automatique : le flow alerte, puis l'&eacute;quipe traite manuellement les anomalies.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je connaissais peu Power Automate et les objets internes Dataverse.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un flow de contr&ocirc;le qui d&eacute;tecte, transforme et publie une alerte exploitable.</div>
+	                </div>
+	              </section>
             </div>
           </article>
         </div>
@@ -815,37 +815,37 @@
                 <h2>Évaluation des savoir-faire en suivi de projet</h2>
               </div>
             </header>
-            <div class="bilan-content">
-              <section class="assessment">
-                <h3>Organiser son travail par ticket</h3>
-                <span class="level">Niveau : bon</span>
-                <p><strong>Contexte :</strong> les traces 5 et 6 montrent le suivi de mes tickets dans Azure DevOps, depuis le board jusqu'au lien avec la pull request.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> les projets de groupe m'avaient donn&eacute; une base ; le stage m'a appris &agrave; tenir un ticket &agrave; jour pour une &eacute;quipe qui s'en sert r&eacute;ellement.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je suivais surtout mes t&acirc;ches personnellement.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je sais rendre mon avancement lisible dans un board partag&eacute;.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Travailler avec pull request</h3>
-                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> les traces 7 et 8 montrent que mon code passe par pull request, validation, revue, commentaires et correction avant int&eacute;gration.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> j'avais d&eacute;j&agrave; utilis&eacute; Git en cours ; le stage m'a appris la validation collaborative et l'importance de commits li&eacute;s &agrave; un besoin pr&eacute;cis.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Git surtout utilis&eacute; seul.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Workflow collaboratif avec revue et validation.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Communiquer l'avancement</h3>
-                <span class="level">Niveau : moyen &agrave; bon</span>
-                <p><strong>Contexte :</strong> les points d'avancement, les rituels de sprint et les &eacute;changes Teams m'ont oblig&eacute; &agrave; expliciter ce qui &eacute;tait termin&eacute;, en revue, bloqu&eacute; ou &agrave; reprendre.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris ce point en stage. La difficult&eacute; est d'alerter assez t&ocirc;t quand un ticket cache un choix technique plus large.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je communiquais surtout quand on me demandait un &eacute;tat.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je sais mieux formuler un blocage ou un besoin de validation.</div>
-                </div>
-              </section>
+	            <div class="bilan-content">
+	              <section class="assessment">
+	                <h3>Organiser son travail dans Azure DevOps</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> les traces 5 et 6 montrent le suivi de mes tickets dans Azure DevOps : board filtr&eacute; sur <code>@Me</code>, sprint <code>2026.12</code>, <code>Area Path</code>, <code>Iteration Path</code>, description du besoin et liens de d&eacute;veloppement.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; ne pas suivre mes t&acirc;ches seulement dans ma t&ecirc;te. Le ticket sert de r&eacute;f&eacute;rence commune : il indique le p&eacute;rim&egrave;tre, l'&eacute;tat, le sprint et le rattachement projet.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je suivais surtout mes t&acirc;ches personnellement ou dans un contexte scolaire.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais rendre mon avancement lisible dans un board utilis&eacute; par toute l'&eacute;quipe.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>Travailler avec pull request et revue</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> les traces 7 et 8 montrent le cycle complet : pull request, approbation de Nicolas, commentaire <code>LGTM</code>, lien avec le work item, commentaire de revue et correction avant int&eacute;gration.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'avais d&eacute;j&agrave; utilis&eacute; Git, mais le stage m'a montr&eacute; la diff&eacute;rence entre pousser du code et faire valider un changement dans une &eacute;quipe. Une PR doit &ecirc;tre compr&eacute;hensible, reli&eacute;e &agrave; un besoin et corrig&eacute;e apr&egrave;s feedback.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Git surtout utilis&eacute; seul.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Workflow collaboratif avec ticket, PR, revue, correction et merge.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>Rendre l'avancement tra&ccedil;able</h3>
+	                <span class="level">Niveau : moyen &agrave; bon</span>
+	                <p><strong>Contexte :</strong> l'ensemble de l'axe 2 montre que l'avancement ne repose pas sur une seule preuve : le board indique l'&eacute;tat, le ticket d&eacute;crit le besoin, la PR montre le code, et la revue montre la validation.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> la difficult&eacute; est de maintenir toutes ces informations coh&eacute;rentes. Un ticket ferm&eacute; sans PR li&eacute;e, ou une PR sans contexte, rendrait le suivi moins fiable pour l'&eacute;quipe.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je communiquais surtout un &eacute;tat oral ou ponctuel.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais appuyer mon avancement sur des traces concr&egrave;tes : board, ticket, PR et commentaire.</div>
+	                </div>
+	              </section>
             </div>
           </article>
         </div>
@@ -860,73 +860,22 @@
               Cette page montre comment je me suis intégré dans l'équipe : identification des rôles, échanges
               Teams, réunions, calendrier et participation à un exercice interne autour du projet 3110.
             </p>
-          </div>
-          <div class="page-kicker">
-            <strong>4</strong>
-            traces d'intégration
-          </div>
+	          </div>
+	          <div class="page-kicker">
+	            <strong>3</strong>
+	            traces d'intégration
+	          </div>
         </div>
 
         <div data-tabs="integration">
-          <div class="tabs" role="tablist" aria-label="Sous-pages intégration">
-            <button class="tab-button" type="button" data-tab-target="int-1">Trace 8</button>
-            <button class="tab-button" type="button" data-tab-target="int-2">Trace 9</button>
-            <button class="tab-button" type="button" data-tab-target="int-3">Trace 10</button>
-            <button class="tab-button" type="button" data-tab-target="int-4">Trace 11</button>
-            <button class="tab-button" type="button" data-tab-target="int-bilan">Bilan</button>
-          </div>
+	          <div class="tabs" role="tablist" aria-label="Sous-pages intégration">
+	            <button class="tab-button" type="button" data-tab-target="int-1">Trace 9</button>
+	            <button class="tab-button" type="button" data-tab-target="int-2">Trace 10</button>
+	            <button class="tab-button" type="button" data-tab-target="int-3">Trace 11</button>
+	            <button class="tab-button" type="button" data-tab-target="int-bilan">Bilan</button>
+	          </div>
 
-          <article class="tab-panel trace-card" data-tab-panel="int-1">
-            <header class="trace-head">
-              <div>
-                <span class="trace-number">Trace 8</span>
-                <h2>Comprendre l'organigramme IT</h2>
-                <div class="skill-list">
-                  <span class="skill red">Identifier les rôles</span>
-                  <span class="skill blue">Savoir à qui demander</span>
-                  <span class="skill green">Situer son équipe</span>
-                </div>
-              </div>
-            </header>
-            <div class="trace-body">
-              <figure class="trace-visual">
-                <div class="image-frame is-wide">
-                  <button type="button" data-open-image data-image-title="Trace 8 - Organigramme IT HIFI FILTER">
-                    <img src="assets/traces/trace08-organigramme.jfif" alt="Organigramme de l'équipe IT HIFI FILTER avec product owners, data BI, développeurs et DevOps" />
-                  </button>
-                  <span class="pin" style="--x: 45%; --y: 36%;">A</span>
-                  <span class="pin" style="--x: 68%; --y: 36%;">B</span>
-                  <span class="pin" style="--x: 86%; --y: 34%;">C</span>
-                </div>
-                <figcaption>Trace n°8 : organigramme de l'équipe IT avec les pôles métier, data, développement et DevOps.</figcaption>
-              </figure>
-              <div class="trace-text">
-                <h3>Description de la trace</h3>
-                <p>
-                  La trace n°8 est importante car elle explique mon environnement humain. Je n'ai pas travaillé
-                  seul : mon stage s'inscrit dans une équipe organisée par responsabilités.
-                </p>
-                <h3>Savoir-faire &eacute;l&eacute;mentaires utilis&eacute;s</h3>
-                <p>
-                  Pour <span class="sf-red">identifier les rôles</span>, j'ai distingué Product Owner,
-                  Data / BI, développeurs Hubble, développeurs Microsoft et DevOps. Cela m'a aidé à comprendre
-                  pourquoi certains sujets étaient arbitrés par des personnes différentes.
-                </p>
-                <p>
-                  Pour <span class="sf-blue">savoir à qui demander</span>, l'organigramme a servi de repère :
-                  Nicolas Larose pour mes PR DataCuddle / Microsoft, Clément Benoit-Pequignet pour le suivi de
-                  stage et les priorités, Dorian Monnier pour les questions d'architecture et DevOps.
-                </p>
-                <p>
-                  Pour <span class="sf-green">situer mon équipe</span>, j'ai compris que mon travail reliait
-                  plusieurs pôles : développement Microsoft, données Dataverse, tests, Power Platform et suivi
-                  produit.
-                </p>
-              </div>
-            </div>
-          </article>
-
-	          <article class="tab-panel trace-card" data-tab-panel="int-2">
+		          <article class="tab-panel trace-card" data-tab-panel="int-1">
 	            <header class="trace-head">
 	              <div>
 	                <span class="trace-number">Trace 9</span>
@@ -998,7 +947,7 @@
 	            </div>
 	          </article>
 
-	          <article class="tab-panel trace-card" data-tab-panel="int-3">
+		          <article class="tab-panel trace-card" data-tab-panel="int-2">
 	            <header class="trace-head">
 	              <div>
 	                <span class="trace-number">Trace 10</span>
@@ -1064,7 +1013,7 @@
 	            </div>
 	          </article>
 
-	          <article class="tab-panel trace-card" data-tab-panel="int-4">
+		          <article class="tab-panel trace-card" data-tab-panel="int-3">
 	            <header class="trace-head">
 	              <div>
 	                <span class="trace-number">Trace 11</span>
@@ -1136,37 +1085,37 @@
                 <h2>Évaluation des savoir-faire d'intégration</h2>
               </div>
             </header>
-            <div class="bilan-content">
-              <section class="assessment">
-                <h3>Identifier l'organisation</h3>
-                <span class="level">Niveau : bon</span>
-                <p><strong>Contexte :</strong> la trace 8 montre que je sais situer les r&ocirc;les autour de moi : responsable, lead Microsoft, d&eacute;veloppeurs, data, DevOps et product owners.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> ce savoir-faire s'apprend surtout en entreprise ; la difficult&eacute; est de comprendre qui d&eacute;cide, qui d&eacute;veloppe et qui valide.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je voyais surtout &laquo; l'&eacute;quipe IT &raquo;.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je distingue PO, d&eacute;veloppeurs, data, DevOps et management.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Communiquer dans un cadre professionnel</h3>
-                <span class="level">Niveau : moyen &agrave; bon</span>
-                <p><strong>Contexte :</strong> les traces 9 et 10 montrent mes &eacute;changes Teams, les r&eacute;unions et les rituels utilis&eacute;s pour clarifier le travail et comprendre les d&eacute;cisions.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris en stage &agrave; poser des questions courtes. Je dois encore progresser sur la prise de parole spontan&eacute;e en r&eacute;union.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />Je demandais surtout de l'aide quand j'&eacute;tais bloqu&eacute;.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je sais confirmer une consigne et formuler une question pr&eacute;cise.</div>
-                </div>
-              </section>
-              <section class="assessment">
-                <h3>Agir avec autonomie mesur&eacute;e</h3>
-                <span class="level">Niveau : bon</span>
-                <p><strong>Contexte :</strong> la trace 11 montre une consigne informelle transform&eacute;e en actions : pr&eacute;paration d'un environnement, organisation et participation &agrave; un exercice d'&eacute;quipe.</p>
-                <p><strong>Apprentissage et difficult&eacute; :</strong> les projets BUT m'ont donn&eacute; une base d'autonomie ; le stage m'a appris &agrave; agir sans d&eacute;passer le cadre fix&eacute; par l'&eacute;quipe.</p>
-                <div class="compare">
-                  <div><strong>Avant</strong><br />J'attendais souvent une consigne tr&egrave;s pr&eacute;cise.</div>
-                  <div><strong>Apr&egrave;s</strong><br />Je sais avancer seul tout en demandant validation au bon moment.</div>
-                </div>
-              </section>
+	            <div class="bilan-content">
+	              <section class="assessment">
+	                <h3>Comprendre ma place dans l'organisation</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> la trace 9 montre mon positionnement dans l'&eacute;quipe IT Helios : p&ocirc;le d&eacute;veloppeurs Microsoft, Nicolas Larose comme r&eacute;f&eacute;rent technique, Cl&eacute;ment Benoit-Pequignet comme manager et tuteur, et les Product Owners comme porteurs des besoins m&eacute;tier.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; distinguer les r&ocirc;les sans les confondre. Les Product Owners contribuaient aux besoins de l'&eacute;quipe, mais mes t&acirc;ches passaient surtout par Nicolas, qui les pr&eacute;cisait ou les r&eacute;attribuait.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je voyais surtout &laquo; l'&eacute;quipe IT &raquo;.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais situer mon &eacute;quipe, mon r&eacute;f&eacute;rent, mon tuteur et le r&ocirc;le des PO dans le circuit des missions.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>S'int&eacute;grer au rythme de l'&eacute;quipe</h3>
+	                <span class="level">Niveau : moyen &agrave; bon</span>
+	                <p><strong>Contexte :</strong> la trace 10 montre les rituels Scrum et les points techniques DataCuddle dans mon calendrier. Ces r&eacute;unions reliaient mon travail individuel aux d&eacute;cisions collectives, notamment autour de New Horizon et du passage vers des tests Python.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris que les r&eacute;unions ne sont pas seulement du temps hors d&eacute;veloppement : elles servent &agrave; comprendre les priorit&eacute;s, les arbitrages techniques et les changements de direction. Je dois encore progresser sur la prise de parole spontan&eacute;e.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />Je voyais surtout les r&eacute;unions comme des points d'information.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je comprends mieux comment elles orientent les tickets, les choix techniques et mon travail de d&eacute;veloppement.</div>
+	                </div>
+	              </section>
+	              <section class="assessment">
+	                <h3>Transformer une consigne en action</h3>
+	                <span class="level">Niveau : bon</span>
+	                <p><strong>Contexte :</strong> la trace 11 montre le projet 3110 : &agrave; partir d'un message Teams de Nicolas, j'ai compris les actions &agrave; pr&eacute;parer pour un exercice interne d'audit dans Apollo Playground.</p>
+	                <p><strong>Apprentissage et difficult&eacute; :</strong> la consigne n'&eacute;tait pas un cahier des charges formel. Il fallait extraire les actions concr&egrave;tes, pr&eacute;parer un environnement isol&eacute;, coordonner le suivi et rester dans le cadre fix&eacute; par l'&eacute;quipe.</p>
+	                <div class="compare">
+	                  <div><strong>Avant</strong><br />J'attendais souvent une consigne tr&egrave;s pr&eacute;cise.</div>
+	                  <div><strong>Apr&egrave;s</strong><br />Je sais transformer une demande informelle en plan d'action, tout en demandant validation quand le cadre doit &ecirc;tre confirm&eacute;.</div>
+	                </div>
+	              </section>
             </div>
           </article>
         </div>
