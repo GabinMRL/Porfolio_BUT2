@@ -219,36 +219,55 @@
 	                  <span class="skill red">Résoudre une expression</span>
 	                  <span class="skill blue">Exécuter une branche</span>
 	                  <span class="skill green">Propager les erreurs</span>
-	                  <span class="skill orange">Corriger après revue</span>
+		                  <span class="skill orange">Valider par tests</span>
 	                </div>
 	              </div>
 	            </header>
 	            <div class="trace-body">
 	              <figure class="trace-visual">
-	                <div class="image-frame is-wide">
-	                  <button type="button" data-open-image data-image-title="Trace 1 - Revue DataCuddle condition">
-	                    <img src="assets/traces/Trace1-ConditionReview.png" alt="Pull request Azure DevOps montrant l'ajout des conditions dans dataCuddle_workflow.py" />
-	                  </button>
-	                </div>
-	                <figcaption>
-	                  Trace n°1 : pull request Azure DevOps sur <code>dataCuddle_workflow.py</code>. La capture montre
-	                  l'ajout de l'action <code>condition</code>, la résolution d'expression, l'exécution de branches
-	                  et des commentaires de revue sur la qualité du code.
-	                </figcaption>
-	              </figure>
-	              <div class="trace-text">
-	                <h3>Descriptif général de la trace</h3>
+		                <div class="image-frame is-tall">
+		                  <button type="button" data-open-image data-image-title="Trace 1 - Code du moteur de condition">
+		                    <img src="assets/traces/Trace1-ConditionCode.png" alt="Extrait de dataCuddle_workflow.py montrant le moteur de condition DataCuddle" />
+		                  </button>
+		                </div>
+			                <figcaption>
+			                  Trace n°1A : extrait de <code>dataCuddle_workflow.py</code>. À encadrer : en rouge les lignes
+			                  587-589 pour la résolution de l'expression, en bleu les lignes 595-614 pour le choix puis
+			                  l'exécution de la branche, et en vert les lignes 616-618 pour la propagation d'une erreur
+			                  enfant.
+			                </figcaption>
+		              </figure>
+		              <div class="trace-text">
+		                <figure class="trace-visual">
+		                  <div class="image-frame">
+		                    <button type="button" data-open-image data-image-title="Trace 1 - Tests JSON des conditions">
+		                      <img src="assets/traces/Trace1-ConditionTest.png" alt="Extrait de unitTest_condition.json montrant les cas true et false d'une condition DataCuddle" />
+		                    </button>
+		                  </div>
+			                  <figcaption>
+			                    Trace n°1B : extrait de <code>unitTest_condition.json</code>. À encadrer en orange : les
+			                    blocs lignes 7-18 et 30-40. Je conseille aussi de souligner <code>expr</code>,
+			                    <code>true</code>, <code>false</code>, <code>pass</code> et <code>fail</code> pour montrer
+			                    que les tests vérifient réellement la branche empruntée.
+			                  </figcaption>
+		                </figure>
+		                <h3>Descriptif général de la trace</h3>
 	                <p>
 	                  Cette trace montre l'ajout d'une action <code>condition</code> dans DataCuddle. Avant cette
 	                  évolution, un workflow exécutait surtout une suite d'étapes de manière linéaire. Avec cette
 	                  action, il peut maintenant évaluer une expression puis choisir une branche <code>true</code> ou
 	                  <code>false</code>.
 	                </p>
-	                <p>
-	                  La difficulté était d'intégrer cette logique dans un moteur existant sans casser les autres
-	                  actions. Il fallait aussi conserver un résultat lisible : si une sous-étape échoue, la condition
-	                  doit remonter un statut exploitable et un détail d'erreur compréhensible.
-	                </p>
+		                <p>
+		                  La difficulté était d'intégrer cette logique dans un moteur existant sans casser les autres
+		                  actions. Il fallait aussi conserver un résultat lisible : si une sous-étape échoue, la condition
+		                  doit remonter un statut exploitable et un détail d'erreur compréhensible.
+		                </p>
+		                <p>
+		                  Les annotations doivent donc suivre le chemin d'exécution : d'abord l'expression est évaluée,
+		                  ensuite le moteur choisit une branche, puis il exécute les sous-étapes et remonte l'erreur si
+		                  une étape enfant échoue.
+		                </p>
 	                <h3>Analyse des savoir-faire</h3>
 	                <p>
 	                  Pour <span class="sf-red">résoudre une expression</span>, j'utilise les variables partagées du
@@ -266,9 +285,11 @@
 	                  enfant échoue.
 	                </p>
 	                <p>
-	                  Pour <span class="sf-orange">corriger après revue</span>, les remarques de Nicolas m'ont amené
-	                  à éviter des traitements inutiles et à améliorer le détail retourné en cas d'échec.
-	                </p>
+		                  Pour <span class="sf-orange">valider par tests</span>, j'ai associé l'évolution du moteur à
+		                  des scénarios JSON simples : condition vraie, condition fausse et branche attendue. Cela permet
+		                  de vérifier que le moteur ne se contente pas d'évaluer une expression, mais exécute bien le bon
+		                  chemin du workflow.
+		                </p>
 	              </div>
 	            </div>
 	          </article>
@@ -288,35 +309,48 @@
             </header>
 	            <div class="trace-body">
 	              <figure class="trace-visual">
-	                <div class="image-frame is-wide">
-	                  <button type="button" data-open-image data-image-title="Trace 2 - Revue fonctions DataCuddle">
-	                    <img src="assets/traces/Trace2-ExpressionTypes.png" alt="Pull request DataCuddle expression funcs avec revue sur les comparaisons de types et les dates ISO" />
-	                  </button>
-	                </div>
-	                <figcaption>
-	                  Trace n°2 : revue de <code>dataCuddle_expression_funcs.py</code>. La capture montre un retour
-	                  sur les comparaisons typées, notamment la différence entre nombres, chaînes, dates ISO et valeurs
-	                  <code>None</code>.
-	                </figcaption>
-	              </figure>
-	              <div class="trace-text">
-	                <div class="image-frame">
-	                  <button type="button" data-open-image data-image-title="Trace 2 - Tests expressions DataCuddle">
-	                    <img src="assets/traces/Trace2-ExpressionTests.png" alt="Pull request DataCuddle montrant des retours sur string null et des tests d'expression à compléter" />
-	                  </button>
-	                </div>
-	                <h3>Descriptif général de la trace</h3>
+		                <div class="image-frame is-tall">
+		                  <button type="button" data-open-image data-image-title="Trace 2 - Code des comparaisons typées">
+		                    <img src="assets/traces/Trace2-ExpressionCode.png" alt="Extrait de dataCuddle_expression_funcs.py montrant la gestion des comparaisons typées" />
+		                  </button>
+		                </div>
+			                <figcaption>
+			                  Trace n°2A : extrait de <code>dataCuddle_expression_funcs.py</code>. À encadrer : en doré
+			                  les lignes 413-415 pour la fonction de comparaison et <code>equals</code>, en violet les
+			                  lignes 417-427 pour la gestion des types, et en orange les lignes 428-434 pour les erreurs
+			                  explicites sur les cas invalides.
+			                </figcaption>
+		              </figure>
+		              <div class="trace-text">
+		                <div class="image-frame">
+		                  <button type="button" data-open-image data-image-title="Trace 2 - Tests des expressions DataCuddle">
+		                    <img src="assets/traces/Trace2-ExpressionTestsCode.png" alt="Extrait de unitTest_expression.json montrant des tests d'expressions DataCuddle" />
+		                  </button>
+		                </div>
+			                <p>
+			                  Trace n°2B : extrait de <code>unitTest_expression.json</code>. À encadrer en vert : les
+			                  blocs lignes 36-52 et 72-88, qui prouvent les tests sur <code>equals()</code>,
+			                  <code>length()</code>, l'indexation, <code>concat()</code>, les booléens et
+			                  <code>null</code>. Je conseille de souligner les valeurs attendues dans chaque
+			                  <code>expr</code>.
+			                </p>
+		                <h3>Descriptif général de la trace</h3>
 	                <p>
 	                  Cette trace montre l'évolution de l'interpréteur d'expressions DataCuddle. Le besoin était
 	                  d'ajouter des fonctions utilisables dans les expressions, comme <code>select()</code>,
 	                  <code>map()</code>, <code>filterArray()</code>, <code>add()</code>, <code>sum()</code>,
 	                  <code>greater()</code>, <code>less()</code> ou <code>equals()</code>.
 	                </p>
-	                <p>
-	                  Ce travail demandait plus que l'ajout de fonctions : il fallait définir un contrat clair pour
-	                  chaque type de valeur. Une comparaison entre nombres, dates ou chaînes ne doit pas produire un
-	                  résultat incohérent ou silencieux.
-	                </p>
+		                <p>
+		                  Ce travail demandait plus que l'ajout de fonctions : il fallait définir un contrat clair pour
+		                  chaque type de valeur. Une comparaison entre nombres, dates ou chaînes ne doit pas produire un
+		                  résultat incohérent ou silencieux.
+		                </p>
+		                <p>
+		                  Les zones annotées doivent faire ressortir ce contrat : ce que la fonction accepte, ce qu'elle
+		                  compare réellement, et les situations où elle choisit de lever une erreur plutôt que de renvoyer
+		                  un résultat ambigu.
+		                </p>
 	                <h3>Analyse des savoir-faire</h3>
 	                <p>
 	                  Pour <span class="sf-gold">implémenter des fonctions</span>, j'ai ajouté des comportements
@@ -324,20 +358,20 @@
 	                  mais prévisibles dans leur résultat.
 	                </p>
 	                <p>
-	                  Pour <span class="sf-violet">gérer les types</span>, la revue a été importante. Les nombres,
-	                  dates ISO, booléens, chaînes et valeurs <code>None</code> ne peuvent pas tous être comparés de la
-	                  même manière.
-	                </p>
-	                <p>
-	                  Pour <span class="sf-orange">traiter les cas limites</span>, j'ai dû préciser le comportement
-	                  de <code>string(null)</code>, des comparaisons avec <code>None</code> et des champs manquants dans
-	                  les fonctions comme <code>select()</code>.
-	                </p>
-	                <p>
-	                  Pour <span class="sf-green">compléter les tests</span>, les retours de revue ont amené à ajouter
-	                  des cas comme <code>equals("a", "b")</code>, la différence de casse ou la sélection d'une clé
-	                  inexistante.
-	                </p>
+		                  Pour <span class="sf-violet">gérer les types</span>, j'ai séparé les comportements selon la
+		                  nature des valeurs : nombres, dates ISO, chaînes de caractères et valeurs <code>None</code>.
+		                  Le code évite ainsi de produire un résultat silencieux sur une comparaison invalide.
+		                </p>
+		                <p>
+		                  Pour <span class="sf-orange">traiter les cas limites</span>, j'ai dû préciser le comportement
+		                  des comparaisons avec <code>None</code>, des dates ISO mal formées et des comparaisons d'ordre
+		                  sur du texte. Ces cas doivent générer une erreur explicite plutôt qu'un résultat ambigu.
+		                </p>
+		                <p>
+		                  Pour <span class="sf-green">compléter les tests</span>, les scénarios JSON vérifient à la fois
+		                  des fonctions simples et des compositions d'expressions. Cela sécurise le moteur quand plusieurs
+		                  fonctions sont imbriquées dans une même condition.
+		                </p>
 	              </div>
 	            </div>
 	          </article>
@@ -356,47 +390,47 @@
               </div>
             </header>
             <div class="trace-body">
-	              <figure class="trace-visual">
-	                <pre class="code-trace"><code><span class="comment"># Extrait de test_dataCuddle_crud_line.py</span>
-	<span class="kw">def</span> <span class="fn">test_datacuddle_crud_line</span>(dc):
-	    <span class="kw">try</span>:
-	        dc.delete(file=<span class="str">'playground_delete.json'</span>, mode=<span class="str">'line'</span>)
-	        dc.insert(file=<span class="str">'playground_insert.json'</span>, mode=<span class="str">'line'</span>)
-	        dc.update(file=<span class="str">'playground_update.json'</span>, mode=<span class="str">'line'</span>)
-	        dc.verify(file=<span class="str">'playground_verify.json'</span>)
-	        dc.delete(file=<span class="str">'playground_delete.json'</span>, mode=<span class="str">'line'</span>)
-	        dc.verify_deleted(file=<span class="str">'playground_delete.json'</span>)
-	    <span class="kw">finally</span>:
-	        dc.delete(file=<span class="str">'playground_delete.json'</span>, mode=<span class="str">'line'</span>)</code></pre>
-	                <figcaption>
-	                  Trace n°3 : extrait d'un test Python DataCuddle. Le test remplace un workflow JSON par des appels
-	                  lisibles à une façade Python.
-	                </figcaption>
-	              </figure>
-	              <div class="trace-text">
-	                <pre class="code-trace"><code><span class="comment"># Extrait de conftest.py</span>
-	<span class="kw">@pytest.fixture</span>(scope=<span class="str">"session"</span>)
-	<span class="kw">def</span> <span class="fn">dc</span>(request):
-	    <span class="kw">return</span> datacuddle.DCManager(
-	        env=request.config.getoption(<span class="str">"--env"</span>),
-	        mode=<span class="str">"line"</span>,
-	        nb_workers=<span class="num">2</span>,
-	        skip_plugin=<span class="kw">True</span>,
-	        output_dir=request.config.getoption(<span class="str">"--output-dir"</span>),
-	        impersonate=request.config.getoption(<span class="str">"--impersonate"</span>),
-	        test_dir=<span class="str">"unitTest/DataCuddle - CRUD"</span>,
-	    )</code></pre>
-	                <h3>Descriptif général de la trace</h3>
+		              <figure class="trace-visual">
+		                <div class="image-frame is-wide">
+		                  <button type="button" data-open-image data-image-title="Trace 3 - Test pytest CRUD DataCuddle">
+		                    <img src="assets/traces/Trace3-PytestTestCode.png" alt="Extrait de test_dataCuddle_crud_line.py montrant un scénario CRUD DataCuddle en pytest" />
+		                  </button>
+		                </div>
+			                <figcaption>
+			                  Trace n°3A : extrait de <code>test_dataCuddle_crud_line.py</code>. À encadrer : en bleu la
+			                  ligne 16 pour montrer le test <code>pytest</code>, en rouge les lignes 18-24 pour les appels
+			                  de l'API de test, et en vert les lignes 26-27 pour le nettoyage exécuté même en cas d'erreur.
+			                </figcaption>
+		              </figure>
+		              <div class="trace-text">
+		                <figure class="trace-visual">
+		                  <div class="image-frame">
+		                    <button type="button" data-open-image data-image-title="Trace 3 - Fixture pytest DataCuddle">
+		                      <img src="assets/traces/Trace3-PytestFixtureCode.png" alt="Extrait de conftest.py montrant la fixture pytest qui prépare DCManager" />
+		                    </button>
+		                  </div>
+			                  <figcaption>
+			                    Trace n°3B : extrait de <code>conftest.py</code>. À encadrer : en bleu les lignes 6-8 pour
+			                    la fixture <code>pytest</code>, et en doré les lignes 9-15 pour la configuration de
+			                    <code>DCManager</code> : environnement, mode, sortie, impersonation et dossier de test.
+			                  </figcaption>
+		                </figure>
+		                <h3>Descriptif général de la trace</h3>
 	                <p>
 	                  Cette trace montre le changement d'approche décidé autour de DataCuddle. Au lieu de continuer à
 	                  décrire certains tests sous forme de workflows JSON, l'équipe a commencé à utiliser des tests
 	                  Python avec <code>pytest</code> et une façade <code>DCManager</code>.
 	                </p>
-	                <p>
-	                  L'objectif était de rendre les tests plus naturels à écrire et plus faciles à maintenir. Les
-	                  actions DataCuddle deviennent des appels Python explicites comme <code>dc.insert()</code>,
-	                  <code>dc.update()</code>, <code>dc.verify()</code> ou <code>dc.delete()</code>.
-	                </p>
+		                <p>
+		                  L'objectif était de rendre les tests plus naturels à écrire et plus faciles à maintenir. Les
+		                  actions DataCuddle deviennent des appels Python explicites comme <code>dc.insert()</code>,
+		                  <code>dc.update()</code>, <code>dc.verify()</code> ou <code>dc.delete()</code>.
+		                </p>
+		                <p>
+		                  Les annotations mettent donc en avant le passage d'un fichier de workflow à un scénario Python :
+		                  le nom du test, les appels métier, le nettoyage final et la configuration réutilisable par les
+		                  autres tests.
+		                </p>
 	                <h3>Analyse des savoir-faire</h3>
 	                <p>
 	                  Pour <span class="sf-red">concevoir une API de test</span>, il faut que les appels restent
@@ -508,33 +542,43 @@
 	              <section class="assessment">
 	                <h3>Faire &eacute;voluer un moteur existant</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> les traces 1 et 2 montrent l'&eacute;volution du moteur DataCuddle : ajout de conditions, r&eacute;solution d'expressions, fonctions typ&eacute;es et traitement des cas limites.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> la principale difficult&eacute; a &eacute;t&eacute; de modifier un outil existant sans casser les comportements d&eacute;j&agrave; utilis&eacute;s. J'ai appris &agrave; raisonner en contrat de fonction : types accept&eacute;s, erreurs attendues et r&eacute;sultat exploitable.</p>
+		                <p><strong>Traces mobilis&eacute;es :</strong> les traces 1 et 2 montrent l'&eacute;volution du moteur DataCuddle &agrave; partir d'extraits de code annot&eacute;s : ajout de conditions, r&eacute;solution d'expressions, choix de branches, fonctions typ&eacute;es et traitement des cas limites.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ce savoir-faire pour modifier un moteur d&eacute;j&agrave; existant, sans me limiter &agrave; ajouter une fonction isol&eacute;e. Les captures montrent le chemin complet : expression &eacute;valu&eacute;e, branche choisie, erreur propag&eacute;e et comportement valid&eacute; par tests.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> la principale difficult&eacute; a &eacute;t&eacute; de ne pas casser les comportements d&eacute;j&agrave; utilis&eacute;s par l'&eacute;quipe. J'ai progress&eacute; sur le raisonnement en contrat de fonction : types accept&eacute;s, erreurs attendues, branche ex&eacute;cut&eacute;e et r&eacute;sultat exploitable.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je savais &eacute;crire des scripts isol&eacute;s.</div>
-	                  <div><strong>Apr&egrave;s</strong><br />Je peux faire &eacute;voluer un moteur partag&eacute; en tenant compte des types, des erreurs et des retours de revue.</div>
+			                  <div><strong>Apr&egrave;s</strong><br />Je peux faire &eacute;voluer un moteur partag&eacute; en justifiant les choix techniques par le code, les types, les erreurs et les tests de validation.</div>
 	                </div>
 	              </section>
 	              <section class="assessment">
 	                <h3>Industrialiser des tests</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> la trace 3 montre le passage d'une logique de workflows JSON vers des tests Python avec <code>pytest</code>, une fixture et une fa&ccedil;ade <code>DCManager</code>.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai compris qu'un test doit rester lisible, rejouable et nettoyable. Le bloc <code>finally</code>, les options d'environnement et la fixture permettent d'&eacute;viter de polluer Dataverse apr&egrave;s un &eacute;chec.</p>
+		                <p><strong>Trace mobilis&eacute;e :</strong> la trace 3 montre le passage d'une logique de workflows JSON vers des tests Python avec <code>pytest</code>, une fixture et une fa&ccedil;ade <code>DCManager</code>.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ce savoir-faire pour rendre les tests plus lisibles et plus faciles &agrave; rejouer. Les captures mettent en avant le nom du test, les appels m&eacute;tier, le nettoyage final et la configuration commune.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> j'ai compris qu'un test ne doit pas seulement v&eacute;rifier un r&eacute;sultat. Il doit aussi &ecirc;tre param&eacute;trable, isol&eacute; et capable de nettoyer les donn&eacute;es Dataverse m&ecirc;me quand une erreur appara&icirc;t.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je validais surtout par ex&eacute;cution manuelle ou par fichiers de test isol&eacute;s.</div>
-	                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un test Python lisible, param&eacute;trable et nettoy&eacute; m&ecirc;me en cas d'erreur.</div>
+		                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un test Python lisible, param&eacute;trable, reli&eacute; &agrave; une API de test et nettoy&eacute; m&ecirc;me en cas d'erreur.</div>
 	                </div>
 	              </section>
 	              <section class="assessment">
 	                <h3>Automatiser un contr&ocirc;le Power Platform</h3>
 	                <span class="level">Niveau : moyen &agrave; bon</span>
-	                <p><strong>Contexte :</strong> la trace 4 montre un flow Power Automate qui d&eacute;tecte des unmanaged layers Dataverse, regroupe les composants concern&eacute;s et publie une alerte Teams.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; manipuler les objets Dataverse et &agrave; produire une sortie utile pour l'&eacute;quipe. La correction n'est pas automatique : le flow alerte, puis l'&eacute;quipe traite manuellement les anomalies.</p>
+		                <p><strong>Trace mobilis&eacute;e :</strong> la trace 4 montre un flow Power Automate qui d&eacute;tecte des unmanaged layers Dataverse, regroupe les composants concern&eacute;s et publie une alerte Teams.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ce savoir-faire pour automatiser un contr&ocirc;le qui aurait &eacute;t&eacute; long &agrave; faire manuellement. Le flow choisit l'environnement, interroge Dataverse, transforme les r&eacute;sultats et les rend visibles dans Teams.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> j'ai appris &agrave; manipuler des objets Dataverse moins visibles et &agrave; produire une sortie utile pour l'&eacute;quipe. La correction n'est pas automatique : le flow alerte, puis l'&eacute;quipe traite manuellement les anomalies.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je connaissais peu Power Automate et les objets internes Dataverse.</div>
-	                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un flow de contr&ocirc;le qui d&eacute;tecte, transforme et publie une alerte exploitable.</div>
-	                </div>
-	              </section>
+		                  <div><strong>Apr&egrave;s</strong><br />Je sais construire un flow de contr&ocirc;le qui d&eacute;tecte, transforme et publie une alerte exploitable.</div>
+		                </div>
+		              </section>
+		              <section class="assessment global-assessment">
+		                <h3>Bilan global de l'axe technique</h3>
+		                <span class="level">Niveau global : bon</span>
+		                <p><strong>Synth&egrave;se :</strong> l'axe technique montre une progression sur deux dimensions compl&eacute;mentaires : d'un c&ocirc;t&eacute; le d&eacute;veloppement Python dans DataCuddle, de l'autre l'automatisation Power Platform autour de Dataverse.</p>
+		                <p><strong>Progression :</strong> avant le stage, je savais surtout produire du code dans un cadre plus scolaire ou isol&eacute;. Apr&egrave;s ces missions, je suis plus capable d'intervenir sur un outil partag&eacute;, de justifier mes choix avec des tests et de produire une automatisation utile &agrave; l'&eacute;quipe.</p>
+		                <p><strong>Limite actuelle :</strong> je dois encore gagner en rapidit&eacute; sur la compr&eacute;hension de gros environnements existants, notamment quand le code, Dataverse et Power Automate sont li&eacute;s.</p>
+		              </section>
             </div>
           </article>
         </div>
@@ -819,8 +863,9 @@
 	              <section class="assessment">
 	                <h3>Organiser son travail dans Azure DevOps</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> les traces 5 et 6 montrent le suivi de mes tickets dans Azure DevOps : board filtr&eacute; sur <code>@Me</code>, sprint <code>2026.12</code>, <code>Area Path</code>, <code>Iteration Path</code>, description du besoin et liens de d&eacute;veloppement.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; ne pas suivre mes t&acirc;ches seulement dans ma t&ecirc;te. Le ticket sert de r&eacute;f&eacute;rence commune : il indique le p&eacute;rim&egrave;tre, l'&eacute;tat, le sprint et le rattachement projet.</p>
+		                <p><strong>Traces mobilis&eacute;es :</strong> les traces 5 et 6 montrent le suivi de mes tickets dans Azure DevOps : board filtr&eacute; sur <code>@Me</code>, sprint <code>2026.12</code>, <code>Area Path</code>, <code>Iteration Path</code>, description du besoin et liens de d&eacute;veloppement.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; Azure DevOps pour rendre mon travail visible dans le fonctionnement de l'&eacute;quipe. Le board donne l'&eacute;tat d'avancement, tandis que le ticket sert de r&eacute;f&eacute;rence commune pour le besoin, le p&eacute;rim&egrave;tre et le rattachement projet.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> j'ai appris &agrave; ne pas suivre mes t&acirc;ches seulement dans ma t&ecirc;te. La difficult&eacute; &eacute;tait de garder les informations coh&eacute;rentes entre le board, le ticket, le sprint et le code produit.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je suivais surtout mes t&acirc;ches personnellement ou dans un contexte scolaire.</div>
 	                  <div><strong>Apr&egrave;s</strong><br />Je sais rendre mon avancement lisible dans un board utilis&eacute; par toute l'&eacute;quipe.</div>
@@ -829,8 +874,9 @@
 	              <section class="assessment">
 	                <h3>Travailler avec pull request et revue</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> les traces 7 et 8 montrent le cycle complet : pull request, approbation de Nicolas, commentaire <code>LGTM</code>, lien avec le work item, commentaire de revue et correction avant int&eacute;gration.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'avais d&eacute;j&agrave; utilis&eacute; Git, mais le stage m'a montr&eacute; la diff&eacute;rence entre pousser du code et faire valider un changement dans une &eacute;quipe. Une PR doit &ecirc;tre compr&eacute;hensible, reli&eacute;e &agrave; un besoin et corrig&eacute;e apr&egrave;s feedback.</p>
+		                <p><strong>Traces mobilis&eacute;es :</strong> les traces 7 et 8 montrent le cycle complet : pull request, approbation de Nicolas, commentaire <code>LGTM</code>, lien avec le work item, commentaire de revue et correction avant int&eacute;gration.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; les pull requests pour faire valider mon code avant int&eacute;gration. La PR ne sert pas seulement &agrave; fusionner une branche : elle donne un contexte, relie le changement au ticket et permet une revue par un autre d&eacute;veloppeur.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> j'avais d&eacute;j&agrave; utilis&eacute; Git, mais le stage m'a montr&eacute; la diff&eacute;rence entre pousser du code et faire valider un changement dans une &eacute;quipe. Il fallait accepter les retours, corriger et garder une trace de la validation.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Git surtout utilis&eacute; seul.</div>
 	                  <div><strong>Apr&egrave;s</strong><br />Workflow collaboratif avec ticket, PR, revue, correction et merge.</div>
@@ -839,13 +885,21 @@
 	              <section class="assessment">
 	                <h3>Rendre l'avancement tra&ccedil;able</h3>
 	                <span class="level">Niveau : moyen &agrave; bon</span>
-	                <p><strong>Contexte :</strong> l'ensemble de l'axe 2 montre que l'avancement ne repose pas sur une seule preuve : le board indique l'&eacute;tat, le ticket d&eacute;crit le besoin, la PR montre le code, et la revue montre la validation.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> la difficult&eacute; est de maintenir toutes ces informations coh&eacute;rentes. Un ticket ferm&eacute; sans PR li&eacute;e, ou une PR sans contexte, rendrait le suivi moins fiable pour l'&eacute;quipe.</p>
+		                <p><strong>Traces mobilis&eacute;es :</strong> l'ensemble de l'axe 2 montre que l'avancement ne repose pas sur une seule preuve : le board indique l'&eacute;tat, le ticket d&eacute;crit le besoin, la PR montre le code et la revue montre la validation.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ces traces pour relier mon travail quotidien &agrave; un suivi compr&eacute;hensible par l'&eacute;quipe. Chaque outil joue un r&ocirc;le diff&eacute;rent : organiser, expliquer, valider et archiver l'avancement.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> la difficult&eacute; est de maintenir toutes ces informations coh&eacute;rentes. Un ticket ferm&eacute; sans PR li&eacute;e, ou une PR sans contexte, rendrait le suivi moins fiable pour l'&eacute;quipe.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je communiquais surtout un &eacute;tat oral ou ponctuel.</div>
-	                  <div><strong>Apr&egrave;s</strong><br />Je sais appuyer mon avancement sur des traces concr&egrave;tes : board, ticket, PR et commentaire.</div>
-	                </div>
-	              </section>
+		                  <div><strong>Apr&egrave;s</strong><br />Je sais appuyer mon avancement sur des traces concr&egrave;tes : board, ticket, PR et commentaire.</div>
+		                </div>
+		              </section>
+		              <section class="assessment global-assessment">
+		                <h3>Bilan global de l'axe suivi de projet</h3>
+		                <span class="level">Niveau global : bon</span>
+		                <p><strong>Synth&egrave;se :</strong> l'axe suivi de projet montre que j'ai appris &agrave; inscrire mon travail dans un processus collectif : tickets Azure DevOps, sprint, pull request, revue et validation.</p>
+		                <p><strong>Progression :</strong> avant le stage, je suivais surtout mon avancement de mani&egrave;re personnelle ou scolaire. Apr&egrave;s ces missions, je sais mieux rendre mon travail tra&ccedil;able pour une &eacute;quipe, avec des preuves reli&eacute;es entre elles.</p>
+		                <p><strong>Limite actuelle :</strong> je dois encore progresser sur l'anticipation : mettre &agrave; jour les informations plus t&ocirc;t et documenter certains choix directement dans le ticket ou la PR au lieu de les garder seulement en discussion.</p>
+		              </section>
             </div>
           </article>
         </div>
@@ -1089,8 +1143,9 @@
 	              <section class="assessment">
 	                <h3>Comprendre ma place dans l'organisation</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> la trace 9 montre mon positionnement dans l'&eacute;quipe IT Helios : p&ocirc;le d&eacute;veloppeurs Microsoft, Nicolas Larose comme r&eacute;f&eacute;rent technique, Cl&eacute;ment Benoit-Pequignet comme manager et tuteur, et les Product Owners comme porteurs des besoins m&eacute;tier.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris &agrave; distinguer les r&ocirc;les sans les confondre. Les Product Owners contribuaient aux besoins de l'&eacute;quipe, mais mes t&acirc;ches passaient surtout par Nicolas, qui les pr&eacute;cisait ou les r&eacute;attribuait.</p>
+		                <p><strong>Trace mobilis&eacute;e :</strong> la trace 9 montre mon positionnement dans l'&eacute;quipe IT Helios : p&ocirc;le d&eacute;veloppeurs Microsoft, Nicolas Larose comme r&eacute;f&eacute;rent technique, Cl&eacute;ment Benoit-Pequignet comme manager et tuteur, et les Product Owners comme porteurs des besoins m&eacute;tier.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; cette compr&eacute;hension pour mieux savoir &agrave; qui demander une validation, qui me transmettait les missions et comment mes t&acirc;ches s'inscrivaient dans l'organisation de l'&eacute;quipe.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> au d&eacute;but, les r&ocirc;les &eacute;taient difficiles &agrave; distinguer. J'ai progressivement compris que les Product Owners contribuaient aux besoins de l'&eacute;quipe, tandis que mes t&acirc;ches passaient surtout par Nicolas, qui les pr&eacute;cisait ou les r&eacute;attribuait.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je voyais surtout &laquo; l'&eacute;quipe IT &raquo;.</div>
 	                  <div><strong>Apr&egrave;s</strong><br />Je sais situer mon &eacute;quipe, mon r&eacute;f&eacute;rent, mon tuteur et le r&ocirc;le des PO dans le circuit des missions.</div>
@@ -1099,8 +1154,9 @@
 	              <section class="assessment">
 	                <h3>S'int&eacute;grer au rythme de l'&eacute;quipe</h3>
 	                <span class="level">Niveau : moyen &agrave; bon</span>
-	                <p><strong>Contexte :</strong> la trace 10 montre les rituels Scrum et les points techniques DataCuddle dans mon calendrier. Ces r&eacute;unions reliaient mon travail individuel aux d&eacute;cisions collectives, notamment autour de New Horizon et du passage vers des tests Python.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> j'ai appris que les r&eacute;unions ne sont pas seulement du temps hors d&eacute;veloppement : elles servent &agrave; comprendre les priorit&eacute;s, les arbitrages techniques et les changements de direction. Je dois encore progresser sur la prise de parole spontan&eacute;e.</p>
+		                <p><strong>Trace mobilis&eacute;e :</strong> la trace 10 montre les rituels Scrum et les points techniques DataCuddle dans mon calendrier. Ces r&eacute;unions reliaient mon travail individuel aux d&eacute;cisions collectives, notamment autour de New Horizon et du passage vers des tests Python.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ces r&eacute;unions pour comprendre le rythme de l'&eacute;quipe, suivre les priorit&eacute;s et relier certaines d&eacute;cisions techniques &agrave; mon propre travail, par exemple l'&eacute;volution des tests DataCuddle.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> j'ai appris que les r&eacute;unions ne sont pas seulement du temps hors d&eacute;veloppement : elles servent &agrave; comprendre les arbitrages, les blocages et les changements de direction. Je dois encore progresser sur la prise de parole spontan&eacute;e.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />Je voyais surtout les r&eacute;unions comme des points d'information.</div>
 	                  <div><strong>Apr&egrave;s</strong><br />Je comprends mieux comment elles orientent les tickets, les choix techniques et mon travail de d&eacute;veloppement.</div>
@@ -1109,13 +1165,21 @@
 	              <section class="assessment">
 	                <h3>Transformer une consigne en action</h3>
 	                <span class="level">Niveau : bon</span>
-	                <p><strong>Contexte :</strong> la trace 11 montre le projet 3110 : &agrave; partir d'un message Teams de Nicolas, j'ai compris les actions &agrave; pr&eacute;parer pour un exercice interne d'audit dans Apollo Playground.</p>
-	                <p><strong>Apprentissage et difficult&eacute; :</strong> la consigne n'&eacute;tait pas un cahier des charges formel. Il fallait extraire les actions concr&egrave;tes, pr&eacute;parer un environnement isol&eacute;, coordonner le suivi et rester dans le cadre fix&eacute; par l'&eacute;quipe.</p>
+		                <p><strong>Trace mobilis&eacute;e :</strong> la trace 11 montre le projet 3110 : &agrave; partir d'un message Teams de Nicolas, j'ai compris les actions &agrave; pr&eacute;parer pour un exercice interne d'audit dans Apollo Playground.</p>
+		                <p><strong>Usage du savoir-faire :</strong> j'ai utilis&eacute; ce savoir-faire pour transformer une consigne informelle en actions concr&egrave;tes : pr&eacute;parer l'environnement, comprendre l'objectif du jeu, suivre l'avancement et rester align&eacute; avec les attentes de l'&eacute;quipe.</p>
+		                <p><strong>Difficult&eacute; et progression :</strong> la consigne n'&eacute;tait pas un cahier des charges formel. Il fallait extraire ce qui &eacute;tait attendu, poser des limites, demander validation si n&eacute;cessaire et coordonner le suivi sans attendre une consigne parfaitement d&eacute;taill&eacute;e.</p>
 	                <div class="compare">
 	                  <div><strong>Avant</strong><br />J'attendais souvent une consigne tr&egrave;s pr&eacute;cise.</div>
-	                  <div><strong>Apr&egrave;s</strong><br />Je sais transformer une demande informelle en plan d'action, tout en demandant validation quand le cadre doit &ecirc;tre confirm&eacute;.</div>
-	                </div>
-	              </section>
+		                  <div><strong>Apr&egrave;s</strong><br />Je sais transformer une demande informelle en plan d'action, tout en demandant validation quand le cadre doit &ecirc;tre confirm&eacute;.</div>
+		                </div>
+		              </section>
+		              <section class="assessment global-assessment">
+		                <h3>Bilan global de l'axe int&eacute;gration</h3>
+		                <span class="level">Niveau global : bon</span>
+		                <p><strong>Synth&egrave;se :</strong> l'axe int&eacute;gration montre que je n'ai pas seulement r&eacute;alis&eacute; des t&acirc;ches techniques. J'ai aussi appris &agrave; comprendre une organisation, identifier les bons interlocuteurs, suivre le rythme d'une &eacute;quipe et transformer des demandes parfois informelles en actions concr&egrave;tes.</p>
+		                <p><strong>Progression :</strong> avant le stage, je voyais surtout l'entreprise comme un groupe assez global. Apr&egrave;s cette exp&eacute;rience, je distingue mieux les r&ocirc;les : r&eacute;f&eacute;rent technique, tuteur, manager, Product Owners, d&eacute;veloppeurs et &eacute;quipe projet.</p>
+		                <p><strong>Limite actuelle :</strong> je dois encore progresser sur la communication proactive, notamment prendre la parole plus naturellement en r&eacute;union et signaler plus t&ocirc;t mes blocages ou mes hypoth&egrave;ses.</p>
+		              </section>
             </div>
           </article>
         </div>

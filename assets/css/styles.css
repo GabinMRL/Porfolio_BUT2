@@ -659,6 +659,12 @@ figcaption {
   background: #fff;
 }
 
+.global-assessment {
+  grid-column: 1 / -1;
+  background: #f8fafc;
+  border-color: #1f2937;
+}
+
 .compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
