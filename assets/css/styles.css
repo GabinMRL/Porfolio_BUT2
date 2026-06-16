@@ -39,7 +39,7 @@ body::before {
 }
 
 p {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 a {
@@ -243,9 +243,9 @@ body.sidebar-collapsed .main-nav {
 }
 
 .shell {
-  width: min(1160px, calc(100% - 48px));
+  width: min(1360px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 18px 0 48px;
+  padding: 14px 0 36px;
 }
 
 .page,
@@ -264,7 +264,7 @@ body.sidebar-collapsed .main-nav {
 .card,
 .trace-card,
 .bilan-card {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   border: 1px solid #eee;
   border-radius: var(--radius);
   background: var(--surface);
@@ -274,7 +274,7 @@ body.sidebar-collapsed .main-nav {
 .hero,
 .page-title,
 .card {
-  padding: 16px;
+  padding: 14px;
 }
 
 .hero {
@@ -282,12 +282,12 @@ body.sidebar-collapsed .main-nav {
 }
 
 .hero > div:first-child {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .hero h1,
 .page-title h1 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-size: 26px;
   font-weight: 500;
   line-height: 1.25;
@@ -330,7 +330,7 @@ body.sidebar-collapsed .main-nav {
 .trace-card h2,
 .bilan-card h2,
 .assessment h3 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-family: Roboto, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0;
@@ -384,7 +384,7 @@ body.sidebar-collapsed .main-nav {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .company-head img {
@@ -401,14 +401,14 @@ body.sidebar-collapsed .main-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .tool-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .tool-item {
@@ -483,7 +483,7 @@ body.sidebar-collapsed .main-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   padding: 0;
   border: 0;
   background: none;
@@ -515,14 +515,14 @@ body.sidebar-collapsed .main-nav {
 
 .trace-head,
 .bilan-head {
-  padding: 16px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--border);
   background: #fff;
 }
 
 .trace-number {
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   padding: 2px 8px;
   border-radius: 4px;
   background: #eeeeee;
@@ -533,9 +533,9 @@ body.sidebar-collapsed .main-nav {
 
 .trace-body {
   display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
-  gap: 20px;
-  padding: 16px;
+  grid-template-columns: minmax(360px, 0.95fr) minmax(520px, 1.05fr);
+  gap: 16px;
+  padding: 14px;
 }
 
 .trace-body.single {
@@ -546,8 +546,10 @@ body.sidebar-collapsed .main-nav {
   margin: 0;
 }
 
-.trace-text .trace-visual {
-  margin-bottom: 18px;
+.trace-media {
+  display: grid;
+  align-content: start;
+  gap: 14px;
 }
 
 .image-frame {
@@ -628,8 +630,8 @@ body.sidebar-collapsed .main-nav {
 
 figcaption {
   display: block;
-  margin-top: 10px;
-  padding: 10px 12px 10px 14px;
+  margin-top: 8px;
+  padding: 8px 10px 8px 12px;
   border: 1px solid #dbeafe;
   border-left: 4px solid var(--primary);
   border-radius: 4px;
@@ -682,7 +684,7 @@ figcaption code {
 }
 
 .trace-text h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 16px;
 }
 
@@ -712,8 +714,8 @@ figcaption code {
 .bilan-content {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  padding: 16px;
+  gap: 12px;
+  padding: 14px;
 }
 
 .assessment {
@@ -835,7 +837,7 @@ figcaption code {
   cursor: zoom-out;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .trace-body,
   .bilan-content {
     grid-template-columns: 1fr;
