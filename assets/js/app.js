@@ -4,6 +4,7 @@ const tabGroups = Array.from(document.querySelectorAll("[data-tabs]"));
 const modal = document.querySelector("#image-modal");
 const modalImage = document.querySelector("#modal-image");
 const modalTitle = document.querySelector("#modal-title");
+const modalZoomButton = document.querySelector("[data-toggle-zoom]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const narrowViewport = window.matchMedia("(max-width: 860px)");
 const sidebarStorageKey = "portfolio-sidebar-collapsed-v3";
@@ -97,6 +98,19 @@ function activateTab(group, tabId) {
   });
 }
 
+function setModalZoom(isZoomed) {
+  if (!modal) return;
+  modal.classList.toggle("is-zoomed", isZoomed);
+  modalZoomButton?.setAttribute("aria-pressed", String(isZoomed));
+  if (modalZoomButton) {
+    modalZoomButton.textContent = isZoomed ? "Ajuster" : "Zoomer";
+  }
+}
+
+function toggleModalZoom() {
+  setModalZoom(!modal?.classList.contains("is-zoomed"));
+}
+
 window.addEventListener("hashchange", handleRoute);
 handleRoute();
 
@@ -125,12 +139,18 @@ document.querySelectorAll("[data-open-image]").forEach((button) => {
   button.addEventListener("click", () => {
     const img = button.querySelector("img");
     if (!img || !modal || !modalImage) return;
+    setModalZoom(false);
     modalImage.src = img.currentSrc || img.src;
     modalImage.alt = img.alt;
-    modalTitle.textContent = button.dataset.imageTitle || img.alt;
+    if (modalTitle) {
+      modalTitle.textContent = button.dataset.imageTitle || img.alt;
+    }
     modal.showModal();
   });
 });
+
+modalZoomButton?.addEventListener("click", toggleModalZoom);
+modalImage?.addEventListener("click", toggleModalZoom);
 
 document.querySelectorAll("[data-close-modal]").forEach((button) => {
   button.addEventListener("click", () => modal?.close());
@@ -140,6 +160,11 @@ modal?.addEventListener("click", (event) => {
   if (event.target === modal) modal.close();
 });
 
+modal?.addEventListener("close", () => {
+  setModalZoom(false);
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal?.open) modal.close();
+  if ((event.key === "z" || event.key === "Z") && modal?.open) toggleModalZoom();
 });

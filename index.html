@@ -322,18 +322,20 @@
 			                </figcaption>
 		              </figure>
 		              <div class="trace-text">
-		                <div class="image-frame">
-		                  <button type="button" data-open-image data-image-title="Trace 2 - Tests des expressions DataCuddle">
-		                    <img src="assets/traces/Trace2-ExpressionTestsCode.png" alt="Extrait de unitTest_expression.json montrant des tests d'expressions DataCuddle" />
-		                  </button>
-		                </div>
-			                <p>
+		                <figure class="trace-visual">
+		                  <div class="image-frame">
+		                    <button type="button" data-open-image data-image-title="Trace 2 - Tests des expressions DataCuddle">
+		                      <img src="assets/traces/Trace2-ExpressionTestsCode.png" alt="Extrait de unitTest_expression.json montrant des tests d'expressions DataCuddle" />
+		                    </button>
+		                  </div>
+			                <figcaption>
 			                  Trace n°2B : extrait de <code>unitTest_expression.json</code>. À encadrer en vert : les
 			                  blocs lignes 36-52 et 72-88, qui prouvent les tests sur <code>equals()</code>,
 			                  <code>length()</code>, l'indexation, <code>concat()</code>, les booléens et
 			                  <code>null</code>. Je conseille de souligner les valeurs attendues dans chaque
 			                  <code>expr</code>.
-			                </p>
+			                </figcaption>
+		                </figure>
 		                <h3>Descriptif général de la trace</h3>
 	                <p>
 	                  Cette trace montre l'évolution de l'interpréteur d'expressions DataCuddle. Le besoin était
@@ -1190,9 +1192,14 @@
     <dialog id="image-modal" class="modal" aria-labelledby="modal-title">
       <div class="modal-toolbar">
         <p id="modal-title" class="modal-title">Trace</p>
-        <button type="button" class="modal-close" data-close-modal>Fermer</button>
+        <div class="modal-actions">
+          <button type="button" class="modal-zoom" data-toggle-zoom aria-pressed="false">Zoomer</button>
+          <button type="button" class="modal-close" data-close-modal>Fermer</button>
+        </div>
       </div>
-      <img id="modal-image" src="" alt="" />
+      <div class="modal-stage">
+        <img id="modal-image" src="" alt="" />
+      </div>
     </dialog>
 
     <script src="assets/js/app.js"></script>

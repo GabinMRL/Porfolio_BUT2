@@ -546,12 +546,39 @@ body.sidebar-collapsed .main-nav {
   margin: 0;
 }
 
+.trace-text .trace-visual {
+  margin-bottom: 18px;
+}
+
 .image-frame {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 4px;
   background: #f5f5f5;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.image-frame::after {
+  content: "Cliquer pour agrandir";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.84);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.image-frame:hover {
+  border-color: var(--primary);
+  background: #eef6ff;
+  box-shadow: 0 8px 24px rgba(25, 118, 210, 0.16);
 }
 
 .image-frame button {
@@ -563,16 +590,25 @@ body.sidebar-collapsed .main-nav {
   cursor: zoom-in;
 }
 
+.image-frame button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: -3px;
+}
+
 .image-frame img {
   display: block;
   width: 100%;
   max-height: 360px;
   object-fit: contain;
+  transition: transform 0.18s ease;
+}
+
+.image-frame:hover img {
+  transform: scale(1.015);
 }
 
 .image-frame.is-tall img { max-height: 480px; }
 .image-frame.is-wide img { max-height: 320px; }
-.trace-text .image-frame { margin-bottom: 10px; }
 
 .pin {
   position: absolute;
@@ -591,9 +627,37 @@ body.sidebar-collapsed .main-nav {
 }
 
 figcaption {
-  margin-top: 8px;
-  color: var(--muted);
+  display: block;
+  margin-top: 10px;
+  padding: 10px 12px 10px 14px;
+  border: 1px solid #dbeafe;
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  background: #f8fbff;
+  color: #374151;
   font-size: 13px;
+  line-height: 1.5;
+}
+
+figcaption::before {
+  content: "Légende";
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+figcaption code {
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: #eaf2ff;
+  color: #0d47a1;
 }
 
 .legend-list li {
@@ -679,17 +743,17 @@ figcaption {
 }
 
 .modal {
-  width: min(1100px, calc(100% - 32px));
-  max-height: 92vh;
+  width: min(1280px, calc(100% - 24px));
+  max-height: 94vh;
   padding: 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   background: white;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
 }
 
 .modal::backdrop {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.78);
 }
 
 .modal-toolbar {
@@ -703,23 +767,72 @@ figcaption {
 
 .modal-title {
   margin: 0;
+  min-width: 0;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.modal-close {
+.modal-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.modal-close,
+.modal-zoom {
   padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: 4px;
   background: white;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.modal-zoom {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.modal-close:hover,
+.modal-zoom:hover {
+  filter: brightness(0.96);
+}
+
+.modal-stage {
+  display: grid;
+  place-items: center;
+  max-height: calc(94vh - 58px);
+  overflow: auto;
+  background: #101827;
 }
 
 .modal img {
   display: block;
   width: 100%;
-  max-height: calc(92vh - 56px);
+  max-height: calc(94vh - 58px);
   object-fit: contain;
   background: #f5f5f5;
+  cursor: zoom-in;
+}
+
+.modal.is-zoomed {
+  width: min(1600px, calc(100% - 16px));
+}
+
+.modal.is-zoomed .modal-stage {
+  place-items: start;
+}
+
+.modal.is-zoomed img {
+  width: auto;
+  min-width: min(1320px, 145vw);
+  max-width: none;
+  max-height: none;
+  cursor: zoom-out;
 }
 
 @media (max-width: 900px) {
@@ -788,5 +901,35 @@ figcaption {
 
   .skill-grid {
     grid-template-columns: 1fr;
+  }
+
+  .image-frame::after {
+    content: "Agrandir";
+    right: 8px;
+    bottom: 8px;
+  }
+
+  figcaption {
+    padding: 9px 10px;
+  }
+
+  .modal {
+    width: calc(100% - 12px);
+    max-height: 96vh;
+  }
+
+  .modal-toolbar {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-close,
+  .modal-zoom {
+    padding: 7px 9px;
   }
 }
